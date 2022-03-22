@@ -93,7 +93,7 @@ def APICall(access_token, refresh_token):
     header = {'Authorization' : 'Bearer {}'.format(access_token)}
 
     try:
-        response = requests.get("https://api.fitbit.com/1/user/-/sleep/date/2022-03-21.json", headers = header)
+        response = requests.get("https://api.fitbit.com/1/user/-/sleep/date/2022-03-22.json", headers = header)
         response.raise_for_status()
 
         response = response.json()
@@ -104,13 +104,12 @@ def APICall(access_token, refresh_token):
 
 
     except requests.exceptions.HTTPError as e:
-       
-        if (e['errorType'] == 'expired token'):
-            refreshAccessToken(refresh_token)
-            new_result = GetConfig()
-            new_access_token = new_result[0]
-            new_refresh_token = new_result[1]
-            APICall(new_access_token, new_refresh_token)
+
+        refreshAccessToken(refresh_token)
+        new_result = GetConfig()
+        new_access_token = new_result[0]
+        new_refresh_token = new_result[1]
+        APICall(new_access_token, new_refresh_token)
 
 
 result = GetConfig()
