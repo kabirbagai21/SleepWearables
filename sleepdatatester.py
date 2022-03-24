@@ -93,7 +93,7 @@ def APICall(access_token, refresh_token):
     header = {'Authorization' : 'Bearer {}'.format(access_token)}
 
     try:
-        response = requests.get("https://api.fitbit.com/1/user/-/sleep/date/2022-03-22.json", headers = header)
+        response = requests.get("https://api.fitbit.com/1/user/-/sleep/date/2022-03-21.json", headers = header)
         response.raise_for_status()
 
         response = response.json()
