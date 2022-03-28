@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime
 
 class Sleep:
     def __init__(self, auth_client):
@@ -9,39 +10,81 @@ class Sleep:
         
     @staticmethod
     def get_minutes_awake(json):
-        return int(json['summary']['totalTimeInBed']) - int(json['summary']['totalMinutesAsleep'])
+        try:
+            return int(json['summary']['totalTimeInBed']) - int(json['summary']['totalMinutesAsleep'])
+        except:
+            return 0
   
     @staticmethod
     def get_minutes_asleep(json):
-        return int(json['summary']['totalMinutesAsleep'])
+        try:
+            return int(json['summary']['totalMinutesAsleep'])
+        except:
+            return 0
         
     @staticmethod
     def get_sleep_times(main_sleep):
-        start_time = main_sleep['startTime']
-        end_time = main_sleep['endTime']
+        try:
+            start_time = main_sleep['startTime']
+            end_time = main_sleep['endTime']
+        except:
+            start_time = 0
+            end_time = 0
         return start_time, end_time
 
     @staticmethod
     def get_num_awakenings(main_sleep):
-        return int(main_sleep['awakeningsCount'])
+        try:
+            return int(main_sleep['awakeningsCount'])
+        except:
+            return 0
     
     @staticmethod
     def get_sleep_date(main_sleep):
-        return main_sleep['dateOfSleep']
+        try:
+            return main_sleep['dateOfSleep']
+        except:
+            return "1900-00-00"
         
     @staticmethod
     def get_sleep_stage_times(json):
-        deep = int(json['summary']['stages']['deep'])
-        light = int(json['summary']['stages']['light'])
-        rem = int(json['summary']['stages']['rem'])
-        wake = int(json['summary']['stages']['wake'])
+        try:
+            deep = int(json['summary']['stages']['deep'])
+            light = int(json['summary']['stages']['light'])
+            rem = int(json['summary']['stages']['rem'])
+            wake = int(json['summary']['stages']['wake'])
+        except:
+            deep = 0
+            light = 0
+            rem = 0
+            wake = 0
         return wake, light, deep, rem
         
     @staticmethod
     def get_restless_statistics(main_sleep):
-        restless_count = int(main_sleep['restlessCount'])
-        restless_duration = int(main_sleep['restlessDuration'])
+        try:
+            restless_count = int(main_sleep['restlessCount'])
+            restless_duration = int(main_sleep['restlessDuration'])
+        except:
+            restless_count =0 
+            restless_duration = 0
         return restless_count, restless_duration
+    
+    @staticmethod
+    def get_main_sleep_duration(main_sleep):
+        try:
+            dur = int(main_sleep['duration'])
+        except: 
+            dur = 0
+        return dur
+    
+    @staticmethod
+    def get_sleep_efficiency(main_sleep):
+        try:
+            se = float(main_sleep['efficiency'])
+        except:
+            se = 0.0
+        return se
     
         
     
