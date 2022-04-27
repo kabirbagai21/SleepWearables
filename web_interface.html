@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -9,9 +11,19 @@
 
 
 <script>
+import * as fs from 'fs';
 
 const pageurl = window.location.href;
 console.log(pageurl)
+
+const fs = require('fs')
+data = pageurl
+
+fs.writeFile('tokens.txt', data, (err) => {
+      
+    // In case of a error throw err.
+    if (err) throw err;
+})
 
 </script>
 

@@ -1,8 +1,6 @@
 import requests
 import os
 
-
-
 TokenURL = "https://api.fitbit.com/oauth2/token"
 
 TokenFile = "/Users/kabirbagai/Desktop/Radicle-Sleep-Project/tokens.txt"
@@ -12,7 +10,7 @@ clientSecret = "34dd55f271a7630dec75ba92f7b43413"
 encodedID_Secret = 'MjM4NUJGOjM0ZGQ1NWYyNzFhNzYzMGRlYzc1YmE5MmY3YjQzNDEz'
 
 
-AuthorizationCode = "cf211490f386cf439984c160baddc8e700d23247"
+AuthorizationCode = "b54ee9953e6d3f2c14e56abb8bb02818ff9ad138"
 
 def WriteConfig(AccToken, RefToken):
      
@@ -112,8 +110,8 @@ def APICall(access_token, refresh_token):
         APICall(new_access_token, new_refresh_token)
 
 
+getAccessToken(AuthorizationCode)
 result = GetConfig()
 access_token = result[0]
 refresh_token = result[1]
-
 APICall(access_token, refresh_token)
